@@ -1,13 +1,78 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+.App {
+    width: 700px;
+    border: 1px solid;
+    padding: 10px;
+    margin: auto;
+    background-color: black;
+    color: white;
+}
+
+.head {
+    padding: 20px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+.head p {
+    margin: 0;
+}
+.item {
+    display: flex;
+    font-size: 20px;
+    padding: 10px 30px;
+    justify-content: space-around;
+}
+
+.right {
+    display: flex;
+}
+
+.right input {
+    font-size: 20px;
+    width: 20px;
+}
+.right button {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 26px;
+    margin-top: 5px;
+}
+
+.right button:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.form {
+    padding: 0 30px;
+    border-top: 1px solid;
+}
+
+.form input {
+    width: 500px;
+    height: 30px;
+}
+
+.form button {
+    height: 35px;
+    width: 100px;
+    cursor: pointer;
+}
+.remove {
+    color: red;
+    text-decoration: line-through;
 }
