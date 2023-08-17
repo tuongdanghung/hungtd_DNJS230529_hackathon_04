@@ -97,6 +97,7 @@ function App() {
                         <div className="right">
                             <input
                                 type="checkbox"
+                                checked={item.status === true ? true : false}
                                 value={item.status}
                                 onChange={() => handleStatusClick(item.id)}
                             />
