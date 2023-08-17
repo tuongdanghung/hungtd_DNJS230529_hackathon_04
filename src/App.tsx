@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 
 interface DataItem {
     id: number;
@@ -8,6 +8,7 @@ interface DataItem {
 }
 function App() {
     const [data, setData] = useState<DataItem[]>([]);
+    const [id, setId] = useState<number | null>(null);
     const [payload, setPayload] = useState({
         id: 0,
         title: "",
@@ -23,14 +24,27 @@ function App() {
     }, []);
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const maxId = Math.max(...data.map((item: any) => item.id));
-        const newData = { ...payload, id: data.length === 0 ? 0 : maxId + 1 };
-        setData([...data, newData]);
-        localStorage.setItem("test2", JSON.stringify([...data, newData]));
+        if (id !== null) {
+            const editData = data.find((item: any) => item.id === id);
+            if (editData) {
+                editData.title = payload.title;
+            }
+            localStorage.setItem("test2", JSON.stringify(data));
+        } else {
+            const maxId = Math.max(...data.map((item: any) => item.id));
+            const newData = {
+                ...payload,
+                id: data.length === 0 ? 0 : maxId + 1,
+            };
+            setData([...data, newData]);
+            localStorage.setItem("test2", JSON.stringify([...data, newData]));
+        }
+
         setPayload((prevPayload) => ({
             ...prevPayload,
             title: "",
         }));
+        setId(null);
     };
     const handleDelete = (id: number) => {
         const newData = data.filter((item: any) => item.id !== id);
@@ -50,6 +64,17 @@ function App() {
 
             setData(updatedStatus);
             localStorage.setItem("test2", JSON.stringify(data));
+        }
+    };
+
+    const handleEdit = (id: number) => {
+        const editData = data.find((item: any) => item.id === id);
+        if (editData) {
+            setPayload((prevPayload) => ({
+                ...prevPayload,
+                title: editData.title,
+            }));
+            setId(id);
         }
     };
 
@@ -75,6 +100,9 @@ function App() {
                                 value={item.status}
                                 onChange={() => handleStatusClick(item.id)}
                             />
+                            <button onClick={(e) => handleEdit(item.id)}>
+                                <AiOutlineEdit />
+                            </button>
                             <button onClick={(e) => handleDelete(item.id)}>
                                 <AiOutlineDelete />
                             </button>
@@ -95,6 +123,12 @@ function App() {
                                 title: e.target.value,
                             }))
                         }
+                    />
+                    <input
+                        type="hidden"
+                        value={id !== null ? id : ""}
+                        placeholder="id"
+                        onChange={(e) => setId(parseInt(e.target.value))}
                     />
                     <button type="submit">Submit</button>
                 </form>
