@@ -67,6 +67,10 @@ code {
     height: 30px;
 }
 
+.item p {
+    width: 400px;
+}
+
 .form button {
     height: 35px;
     width: 100px;
