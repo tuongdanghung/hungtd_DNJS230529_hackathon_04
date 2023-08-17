@@ -54,7 +54,7 @@ function App() {
         }
     };
 
-    const handleStatusClick = (clickedItem: any) => {
+    const handleStatusClick = (clickedItem: number) => {
         const clickedIndex = data.findIndex((item) => item.id === clickedItem);
 
         if (clickedIndex !== -1) {
